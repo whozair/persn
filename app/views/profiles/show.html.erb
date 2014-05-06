@@ -1,0 +1,94 @@
+<%= link_to 'Back', user_index_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 col-md-7 col-md-offset-2 user-details">
+            <div class="user-image">
+                <img src="http://www.gravatar.com/avatar/2ab7b2009d27ec37bffee791819a090c?s=100&d=mm&r=g" alt="Karan Singh Sisodia" title="Karan Singh Sisodia" class="img-circle">
+            </div>
+            <div class="user-info-block">
+                <div class="user-heading">
+                    <h3><%= @user.name %></h3><% if @user == current_user %>
+			<%= link_to edit_user_registration_path(@user) do %>
+        <span class="glyphicon glyphicon-edit"></span>
+        Edit
+        <% end %>
+		<% end %>
+                    <span class="help-block"><%= @user.email %></span>
+                </div>
+                <ul class="navigation">
+                    <li class="active">
+                        <a data-toggle="tab" href="#information">
+                            <h4>Nice</h4>
+                            <h3>10</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="red" data-toggle="tab" href="#settings">
+                            <h4>Honest</h4>
+                            <h3>10</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="green" data-toggle="tab" href="#email">
+                            <h4>Fun</h4>
+                            <h3>10</h3>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="yellow" data-toggle="tab" href="#email">
+                            <h4>Smart</h4>
+                            <h3>10</h3>
+                        </a>
+                    </li>
+                </ul>
+                <div class="user-body">
+                    <div class="tab-content">
+                        <div id="information" class="tab-pane active">
+                            <h4>Account Information</h4>
+
+                            <%= button_to "Upvote", {:controller=>"profiles", :action => "upvote", :id => @user.id}, :class => 'btn btn-success', method: :put %>
+
+                            <%= button_to "Downvote", {:controller =>"profiles", :action => "downvote", :id => @user.id}, :class => 'btn btn-danger', method: :put %>
+
+                            Score: <%=(@user.get_likes.size - @user.get_dislikes.size) %>
+                        </div>
+                        <div id="settings" class="tab-pane">
+                            <h4>Settings</h4>
+                        </div>
+                        <div id="email" class="tab-pane">
+                            <h4>Send Message</h4>
+                        </div>
+                        <div id="events" class="tab-pane">
+                            <h4>Events</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+
